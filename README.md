@@ -1,2 +1,2 @@
-# Team-6
-SE302 2019-2020 Dönemi Proje Ödevi
+GUI
+Graphical User Interface For The program OBASEB
