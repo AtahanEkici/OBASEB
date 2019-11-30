@@ -309,13 +309,33 @@ public class Obaseb_Gui {
                 Logger.getLogger(Obaseb_Gui.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-        try (Scanner in = new Scanner(FilePath)) 
-        {
-            in.nextLine();
-            String author = in.nextLine(); // author
-            String value = author.split("=")[1];
-            value = value.split("\\}")[0];
-            value = value.split("\\{")[1]; 
+        try (Scanner in = new Scanner(FilePath))
+                        {
+                            String author = in.nextLine();
+                            String identifier ="@article";
+                            
+      
+                            while(!(author.contains(identifier)))
+                            {
+                                if(in.hasNext())
+                                {
+                                    author = in.nextLine();
+                                }
+                                
+                                else
+                                {
+                                    System.out.println("Dosya okunamadı ya da boş");
+                                    break;
+                                }
+                                
+                            }
+                             
+                            author = author.split("@author")[0];
+
+                            author = in.nextLine();
+                            String value = author.split("=")[1];
+                            value = value.split("\\}")[0];
+                            value = value.split("\\{")[1];
             
             textField_1.setText(value.split("\\,")[1].trim() + " " +  value.split("\\,")[0].trim());
           
