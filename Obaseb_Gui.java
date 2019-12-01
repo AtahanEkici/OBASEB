@@ -1,16 +1,10 @@
 package Swing;
 
 import java.awt.EventQueue;
-import org.jbibtex.*;
-import BibTeX.fayılridır;
 import static BibTeX.fayılridır.formatBibTeX;
 import static BibTeX.fayılridır.parseBibTeX;
 import javax.swing.JFrame;
-import javax.swing.JToolBar;
-import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import java.awt.Toolkit;
-import java.awt.Window.Type;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -22,26 +16,21 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
-import javax.swing.JSlider;
-import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.jbibtex.BibTeXDatabase;
-import org.jbibtex.ObjectResolutionException;
 
 public class Obaseb_Gui {
 
@@ -57,18 +46,16 @@ public class Obaseb_Gui {
 
 	/**
 	 * Launch the application.
+     * @param args
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Obaseb_Gui window = new Obaseb_Gui();
-					window.frmObaseb.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		EventQueue.invokeLater(() -> {
+                    try {
+                        Obaseb_Gui window = new Obaseb_Gui();
+                        window.frmObaseb.setVisible(true);
+                    } catch (Exception e) {
+                    }
+                });
 	}
 
 	/**
@@ -283,33 +270,33 @@ public class Obaseb_Gui {
                 
                 JMenuItem mnıtmOpen = new JMenuItem("Open");
 		mnFile.add(mnıtmOpen);
-                mnıtmOpen.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String userDir = System.getProperty("user.home");
-        JFileChooser fc = new JFileChooser(userDir +"/Desktop");
-        Component parent = null;
-        int returnVal = fc.showOpenDialog(parent);
-        if(returnVal == JFileChooser.APPROVE_OPTION) 
-        {
-              File FilePath = fc.getSelectedFile();   
-        
-        try
-{
-          BibTeXDatabase database = parseBibTeX(FilePath);
-        
-        formatBibTeX(database, FilePath);
-}catch(org.jbibtex.ParseException p)
-{
-    System.out.print("Okunmaya çalışan dosyada hata var ya da boş");
-}catch(FileNotFoundException f)
-        {
-            System.out.print("Dosya bulunamadı ya da açılamıyor.");
-        }   catch (IOException ex) {
-                Logger.getLogger(Obaseb_Gui.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-        try (Scanner in = new Scanner(FilePath))
+                mnıtmOpen.addActionListener((ActionEvent e) -> {
+                    String userDir = System.getProperty("user.home");
+                    JFileChooser fc = new JFileChooser(userDir +"/Desktop");;
+                    FileNameExtensionFilter filter = new FileNameExtensionFilter("BIB FILES", "bib", "bibtex");
+                    fc.setFileFilter(filter);
+                    Component parent = null;
+                    int returnVal = fc.showOpenDialog(parent);
+                    if(returnVal == JFileChooser.APPROVE_OPTION)
+                    {
+                        File FilePath = fc.getSelectedFile();
+                        
+                        try
+                        {
+                            BibTeXDatabase database = parseBibTeX(FilePath);
+                            
+                            formatBibTeX(database, FilePath);
+                        }catch(org.jbibtex.ParseException p)
+                        {
+                            System.out.print("Okunmaya çalışan dosyada hata var ya da boş");
+                        }catch(FileNotFoundException f)
+                        {
+                            System.out.print("Dosya bulunamadı ya da açılamıyor.");
+                        }   catch (IOException ex) {
+                            Logger.getLogger(Obaseb_Gui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                        try (Scanner in = new Scanner(FilePath))
                         {
                             String author = in.nextLine();
                             String identifier ="@article";
@@ -336,86 +323,83 @@ public class Obaseb_Gui {
                             String value = author.split("=")[1];
                             value = value.split("\\}")[0];
                             value = value.split("\\{")[1];
-            
-            textField_1.setText(value.split("\\,")[1].trim() + " " +  value.split("\\,")[0].trim());
-          
-            String amssubject = in.nextLine(); // ams-subject giriş //
-            String amssubject2;
-            
-            amssubject2 = amssubject.split("=")[1];
-            amssubject2 = amssubject2.split("\\}")[0].trim();
- 
-            String cevap = amssubject2.split("\\{")[1].trim().substring(amssubject2.split("\\{")[1].trim().indexOf("(")+1,amssubject2.split("\\{")[1].trim().indexOf(")")); 
-            
-            
-              String journal = in.nextLine(); // journal giriş //
-              String journal2;
-              
-            journal2 = journal.split("=")[1].trim();
-            
-            journal2 = journal2.split("\\}")[0].trim();
-
-           textField_4.setText(journal2.split("\\{")[1].trim());
-          
-          String review = in.nextLine(); // review giriş //
-          String review2;
-          
-          review2 = review.split("=")[1].trim();
-          review2 = review2.split("\\}")[0].trim();
-         
-          String pages = in.nextLine(); // pages giriş //
-          String pages2;
-          
-          pages2 = pages.split("=")[1].trim();
-          pages2 = pages2.split("\\}")[0].trim();
-          pages2 = pages2.split("\\{")[1].trim();
-
-           textField_2.setText(pages2.split("\\--")[0] + "-" + pages2.split("\\--")[1]);
-          
-          
-          String title = in.nextLine(); // title giriş //
-          String title2;
-          
-          
-          title2 = title.split("=")[1].trim();
-          title2 = title2.split(",")[0].trim();
-          
-          
-          String cevap2 = title2.substring(title2.indexOf("{")+2,title2.indexOf("}"));
-          
-           textField_3.setText(cevap2); // title veritabanına yazılacak //
-           
-           
-          String volume = in.nextLine(); // volume giriş //
-          String volume2;
-          
-          volume2 = volume.split("=")[1].trim();
-          volume2 = volume2.split(",")[0].trim();
-           
-          String cevap3 = volume2.substring(volume2.indexOf("{")+1,volume2.indexOf("}"));
-
-          textField_6.setText(cevap3);  // volume veri tabanına yazılacak //
-          
-          String year = in.nextLine(); // volume giriş //
-          String year2;
-          
-          year2 = year.split("=")[1].trim();
-          
-           String cevap4 =  year2.substring(year2.indexOf("{")+1, year2.indexOf("}"));   
-           
-           textField_5.setText(cevap4);  // year veri tabanına yazılacak
-           
-           textField_7.setText("1");
-        
-;
-           
-        }   catch (FileNotFoundException ex) {
-                Logger.getLogger(Obaseb_Gui.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }               
-            
-        }
-    });
+                            
+                            textField_1.setText(value.split("\\,")[1].trim() + " " +  value.split("\\,")[0].trim());
+                            
+                            String amssubject = in.nextLine(); // ams-subject giriş //
+                            String amssubject2;
+                            
+                            amssubject2 = amssubject.split("=")[1];
+                            amssubject2 = amssubject2.split("\\}")[0].trim();
+                            
+                            String cevap = amssubject2.split("\\{")[1].trim().substring(amssubject2.split("\\{")[1].trim().indexOf("(")+1,amssubject2.split("\\{")[1].trim().indexOf(")"));
+                            
+                            
+                            String journal = in.nextLine(); // journal giriş //
+                            String journal2;
+                            
+                            journal2 = journal.split("=")[1].trim();
+                            
+                            journal2 = journal2.split("\\}")[0].trim();
+                            
+                            textField_4.setText(journal2.split("\\{")[1].trim());
+                            
+                            String review = in.nextLine(); // review giriş //
+                            String review2;
+                            
+                            review2 = review.split("=")[1].trim();
+                            review2 = review2.split("\\}")[0].trim();
+                            
+                            String pages = in.nextLine(); // pages giriş //
+                            String pages2;
+                            
+                            pages2 = pages.split("=")[1].trim();
+                            pages2 = pages2.split("\\}")[0].trim();
+                            pages2 = pages2.split("\\{")[1].trim();
+                            
+                            textField_2.setText(pages2.split("\\--")[0] + "-" + pages2.split("\\--")[1]);
+                            
+                            
+                            String title = in.nextLine(); // title giriş //
+                            String title2;
+                            
+                            
+                            title2 = title.split("=")[1].trim();
+                            title2 = title2.split(",")[0].trim();
+                            
+                            
+                            String cevap2 = title2.substring(title2.indexOf("{")+2,title2.indexOf("}"));
+                            
+                            textField_3.setText(cevap2); // title veritabanına yazılacak //
+                            
+                            
+                            String volume = in.nextLine(); // volume giriş //
+                            String volume2;
+                            
+                            volume2 = volume.split("=")[1].trim();
+                            volume2 = volume2.split(",")[0].trim();
+                            
+                            String cevap3 = volume2.substring(volume2.indexOf("{")+1,volume2.indexOf("}"));
+                            
+                            textField_6.setText(cevap3);  // volume veri tabanına yazılacak //
+                            
+                            String year = in.nextLine(); // volume giriş //
+                            String year2;
+                            
+                            year2 = year.split("=")[1].trim();
+                            
+                            String cevap4 =  year2.substring(year2.indexOf("{")+1, year2.indexOf("}"));
+                            
+                            textField_5.setText(cevap4);  // year veri tabanına yazılacak
+                            
+                            textField_7.setText("1");
+                            
+                            ;
+                            
+                        }   catch (FileNotFoundException ex) {
+                            Logger.getLogger(Obaseb_Gui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }       });
 		
 		JMenuItem mnıtmDelete = new JMenuItem("Delete");
 		mnFile.add(mnıtmDelete);
@@ -431,11 +415,13 @@ public class Obaseb_Gui {
 	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
+                        @Override
 			public void mousePressed(MouseEvent e) {
 				if (e.isPopupTrigger()) {
 					showMenu(e);
 				}
 			}
+                        @Override
 			public void mouseReleased(MouseEvent e) {
 				if (e.isPopupTrigger()) {
 					showMenu(e);
@@ -445,5 +431,7 @@ public class Obaseb_Gui {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+                
+                
 	}
 }
