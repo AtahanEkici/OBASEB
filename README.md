@@ -1,1 +1,1 @@
-# Search and write functions are added. 
+# Search and write functions are added in our GUI
