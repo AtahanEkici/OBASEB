@@ -1,4 +1,3 @@
-
 package BibTeX;
 
 import Swing.Obaseb_Gui;
@@ -18,9 +17,6 @@ import java.util.logging.Logger;
 
 public class fayılridır
 {
-
-    
-    
     static ArrayList<String> parsebibManual(File file) throws FileNotFoundException
     {
         try
@@ -51,47 +47,34 @@ public class fayılridır
                                 {
                                     title = in.nextLine().trim();
                                     title = title.split("=")[1];
-                                    title = title.split("\\}")[0];
-                                    title = title.split("\\{")[1]; 
                                     values.add(title);
                                     
-                                    String author = in.nextLine();
+                                    String author = in.nextLine().trim();
                                     author = author.split("=")[1];
-                                    author = author.split("\\}")[0];
-                                    author = author.split("\\{")[1]; 
                                     values.add(author);
                                     
-                                    String organization = in.nextLine();
-                                    organization = organization.split("=")[1];
-                                    organization = organization.split("\\}")[0];
-                                    author = organization.split("\\{")[1]; 
+                                    String organization = in.nextLine().trim();
+                                    organization = organization.split("=")[1]; 
                                     values.add(organization);
                                     
-                                    String address = in.nextLine();
+                                    String address = in.nextLine().trim();
                                     address = address.split("=")[1];
-                                    address = address.split("\\}")[0];
-                                    address = address.split("\\{")[1]; 
                                     values.add(address);
                                     
-                                    String edition = in.nextLine();
+                                    String edition = in.nextLine().trim();
                                     edition = edition.split("=")[1];
-                                    edition = edition.split(",")[0];
                                     values.add(edition);
                                           
-                                    String month = in.nextLine();
+                                    String month = in.nextLine().trim();
                                     month = month.split("=")[1];
-                                    month = month.split(",")[0];
                                     values.add(month);
    
-                                    String year = in.nextLine();
+                                    String year = in.nextLine().trim();
                                     year = year.split("=")[1];
-                                    year = year.split(",")[0];
                                     values.add(year);
                                     
-                                    String note = in.nextLine();
+                                    String note = in.nextLine().trim();
                                     note = note.split("=")[1];
-                                    note = note.split("\\}")[0];
-                                    note = note.split("\\{")[1]; 
                                     values.add(note);                                  
                                     return values;
                                 } 
@@ -104,9 +87,7 @@ public class fayılridır
         return null;
     
    }
-    
-    
-    
+
      static ArrayList<String> parsebibMisc(File file) throws FileNotFoundException
     {
         try
@@ -137,33 +118,26 @@ public class fayılridır
                                 if(author.contains(misc))
                                 {
                                     author = in.nextLine();
-                                    author = author.split("\\}")[0];
-                                    author = author.split("\\{")[1];
+                                    author = author.split("=")[1];
                                     values.add(author);
                                     
                                     String title = in.nextLine();
-                                    title = title.split("\\}")[0];
-                                    title = title.split("\\{")[1];
+                                    title = title.split("=")[1];
                                     values.add(title);
                                     
                                     String howpublished = in.nextLine();
-                                    howpublished = howpublished.split("\\}")[0];
-                                    howpublished = howpublished.split("\\{")[1];
+                                    howpublished = howpublished.split("=")[1];
                                     values.add(howpublished);
                                     
                                     String month = in.nextLine();
                                     month = month.split("=")[1];
-                                    month = month.split(",")[0];
                                     values.add(month);
                                     
                                     String year = in.nextLine();
                                     year = year.split("=")[1];
-                                    year = year.split(",")[0];
                                     values.add(year);
                                     
                                     String note = in.nextLine();
-                                    note = note.split("\\}")[0];
-                                    note = note.split("\\{")[1];
                                     values.add(note);  
                                     return values;
                                 }
@@ -210,42 +184,30 @@ public class fayılridır
                                 {
                                     author = in.nextLine();
                                     author = author.split("=")[1];
-                                    author = author.split("\\}")[0];
-                                    author = author.split("\\{")[1]; 
                                     values.add(author);
                                     
                                     String title = in.nextLine();
                                     title = title.split("=")[1];
-                                    title = title.split("\\}")[0];
-                                    title = title.split("\\{")[1]; 
                                     values.add(title);
                                     
                                     String school = in.nextLine();
                                     school = school.split("=")[1];
-                                    school = school.split("\\}")[0];
-                                    school = school.split("\\{")[1]; 
                                     values.add(school);
                                     
                                     String year = in.nextLine();
                                     year = year.split("=")[1];
-                                    year = year.split(",")[0];
                                     values.add(year);
                                     
                                     String address = in.nextLine();
                                     address = address.split("=")[1];
-                                    address = address.split("\\}")[0];
-                                    address = address.split("\\{")[1]; 
                                     values.add(address);
                                     
                                     String month = in.nextLine();
                                     month = month.split("=")[1];
-                                    month = month.split(",")[0];
                                     values.add(month);
                                     
                                     String note = in.nextLine();
                                     note = note.split("=")[1];
-                                    note = note.split("\\}")[0];
-                                    note = note.split("\\{")[1]; 
                                     values.add(note);
                                     return values;
                                 }
@@ -257,9 +219,6 @@ public class fayılridır
                         }
 return null;
     }
-     
-     
-     
      
       static ArrayList<String> parsebibUnpublished(File file) throws FileNotFoundException
     {
@@ -292,30 +251,22 @@ return null;
                                 {
                                     author = in.nextLine().trim();
                                     author = author.split(",")[0];
-                                    author = author.split("\\}")[0];
-                                    author = author.split("\\{")[1];
                                     values.add(author);
                                     
                                     String title = in.nextLine().trim();
                                     title = title.split("=")[1];
-                                    title = title.split("\\{")[1];
-                                    title = title.split("\\}")[0];  
                                     values.add(title);
                                     
                                     String note = in.nextLine().trim();
                                     note = note.split("=")[1];
-                                    note = note.split("\\{")[1];
-                                    note = note.split("\\}")[0];  
                                     values.add(note); 
                                     
                                     String month = in.nextLine().trim();
                                     month = month.split("=")[1];
-                                    month = month.split(",")[0];
                                     values.add(month);
                                      
                                    String year = in.nextLine().trim();
                                     year = year.split("=")[1];
-                                    year = year.split(",")[0];
                                     values.add(year);   
                                     return values;
                                 }
@@ -328,11 +279,6 @@ return null;
         return null;
     }
 
-     
-     
-     
-     
-     
      static ArrayList<String> parsebibTechreport(File file) throws FileNotFoundException
     {
         try
@@ -364,47 +310,34 @@ return null;
                                 {
                                     author = in.nextLine().trim();
                                     author = author.split(",")[0];
-                                    author = author.split("\\}")[0];
-                                    author = author.split("\\{")[1];
                                     values.add(author);
                                     
                                     String title = in.nextLine().trim();
                                     title = title.split("=")[1];
-                                    title = title.split("\\{")[1];
-                                    title = title.split("\\}")[0];  
                                     values.add(title);
                                      
                                     String institution = in.nextLine().trim();
                                     institution = institution.split("=")[1];
-                                    institution = institution.split("\\{")[1];
-                                    institution = institution.split("\\}")[0];  
                                     values.add(institution);
                                     
                                     String year = in.nextLine().trim();
                                     year = year.split("=")[1];
-                                    year = year.split(",")[0];
                                     values.add(year);
                                     
                                     String number = in.nextLine().trim();
                                     number = number.split("=")[1];
-                                    number = number.split(",")[0];
                                     values.add(number);
                                     
                                     String address = in.nextLine().trim();
-                                    address = address.split("=")[1];
-                                    address = address.split("\\{")[1];
-                                    address = address.split("\\}")[0];  
+                                    address = address.split("=")[1]; 
                                     values.add(address);
                                     
                                     String month = in.nextLine().trim();
                                     month = month.split("=")[1];
-                                    month = month.split(",")[0];
                                     values.add(month);
                                     
                                     String note = in.nextLine().trim();
                                     note = note.split("=")[1];
-                                    note = note.split("\\{")[1];
-                                    note = note.split("\\}")[0];  
                                     values.add(note);  
                                     return values;
                                 }
@@ -448,59 +381,43 @@ return null;
                                 if(title.contains(proceedings))
                                 {
                                     title = in.nextLine().trim();
-                                    title = title.split("=")[1];
-                                    title = title.split("\\}")[0];
-                                    title = title.split("\\{")[1];                                   
+                                    title = title.split("=")[1];                                 
                                     values.add(title);
                                     
                                     String year = in.nextLine();
-                                    year = year.split("=")[1];
-                                    year = year.split(",")[0];                              
+                                    year = year.split("=")[1];                             
                                     values.add(year);
                                     
                                     String editor = in.nextLine();
-                                    editor = editor.split("=")[1];
-                                    editor = editor.split("\\}")[0];
-                                    editor = editor.split("\\{")[1];                                   
+                                    editor = editor.split("=")[1];                                
                                     values.add(editor);
                                     
                                     String volume = in.nextLine();
-                                    volume = volume.split("=")[1];
-                                    volume = volume.split(",")[0];                              
+                                    volume = volume.split("=")[1];                            
                                     values.add(volume);
                                     
                                     String series = in.nextLine();
-                                    series = series.split("=")[1];
-                                    series = series.split(",")[0];                              
+                                    series = series.split("=")[1];                             
                                     values.add(series);
                                     
                                     String address = in.nextLine();
-                                    address = address.split("=")[1];
-                                    address = address.split("\\}")[0];
-                                    address = address.split("\\{")[1];                                   
+                                    address = address.split("=")[1];                                  
                                     values.add(address);
                                     
                                     String month = in.nextLine();
-                                    month = month.split("=")[1];
-                                    month = month.split(",")[0];                              
+                                    month = month.split("=")[1];                             
                                     values.add(month);
                                     
                                     String organization = in.nextLine();
-                                    organization = organization.split("=")[1];
-                                    organization = organization.split("\\}")[0];
-                                    organization = organization.split("\\{")[1];                                   
+                                    organization = organization.split("=")[1];                                
                                     values.add(organization);
                                     
                                     String publisher = in.nextLine();
-                                    publisher = publisher.split("=")[1];
-                                    publisher = publisher.split("\\}")[0];
-                                    publisher = publisher.split("\\{")[1];                                   
+                                    publisher = publisher.split("=")[1];                                  
                                     values.add(publisher);
                                     
                                     String note = in.nextLine();
-                                    note = note.split("=")[1];
-                                    note = note.split("\\}")[0];
-                                    note = note.split("\\{")[1];                                   
+                                    note = note.split("=")[1];                                  
                                     values.add(note);    
                                     return values;
                                 }
@@ -513,10 +430,6 @@ return null;
         return null;
     }
      
-     
-     
-                                
-
     static ArrayList<String> parsebibMastersthesis(File file) throws FileNotFoundException
     {
         try
@@ -546,44 +459,32 @@ return null;
                             {
                                 if(author.contains(mastersthesis))
                                 {
-                                    author = in.nextLine();
+                                    author = in.nextLine().trim();
                                     author = author.split("=")[1];
-                                    author = author.split("\\}")[0];
-                                    author = author.split("\\{")[1]; 
                                     values.add(author);
                                     
-                                    String title = in.nextLine();
+                                    String title = in.nextLine().trim();
                                     title = title.split("=")[1];
-                                    title = title.split("\\}")[0];
-                                    title = title.split("\\{")[1]; 
                                     values.add(title);
                                     
-                                    String school = in.nextLine();
+                                    String school = in.nextLine().trim();
                                     school = school.split("=")[1];
-                                    school = school.split("\\}")[0];
-                                    school = school.split("\\{")[1]; 
                                     values.add(school);
                                     
-                                    String year = in.nextLine();
-                                    year = year.split("=")[1];
-                                    year = year.split(",")[0];                              
+                                    String year = in.nextLine().trim();
+                                    year = year.split("=")[1];                            
                                     values.add(year);
                                     
-                                    String address = in.nextLine();
-                                    address = address.split("=")[1];
-                                    address = address.split("\\}")[0];
-                                    address = address.split("\\{")[1]; 
+                                    String address = in.nextLine().trim();
+                                    address = address.split("=")[1]; 
                                     values.add(address);
 
-                                    String month = in.nextLine();
-                                    month = month.split("=")[1];
-                                    month = month.split(",")[0];                              
+                                    String month = in.nextLine().trim();
+                                    month = month.split("=")[1];                             
                                     values.add(month);
                                     
-                                    String note = in.nextLine();
+                                    String note = in.nextLine().trim();
                                     note = note.split("=")[1];
-                                    note = note.split("\\}")[0];
-                                    note = note.split("\\{")[1]; 
                                     values.add(note); 
                                     return values;
                                 }
@@ -597,10 +498,6 @@ return null;
         return null;
     }
 
-                                
-    
-
-    
     static ArrayList<String> parsebibInbook(File file) throws FileNotFoundException
     {
         try
@@ -632,67 +529,52 @@ return null;
                                 {
                                     author = in.nextLine().trim();
                                     author = author.split("=")[1];
-                                    author = author.split("\\}")[0];
-                                    author = author.split("\\{")[1]; 
                                     values.add(author);
                                     
-                                    String title = in.nextLine();
-                                    title = title.split("\\}")[0];
-                                    title = title.split("\\{")[1]; 
+                                    String title = in.nextLine().trim();
+                                    title = title.split("=")[1];
                                     values.add(title);
                                     
-                                    String chapter = in.nextLine();
+                                    String chapter = in.nextLine().trim();
                                     chapter = chapter.split("=")[1];
-                                    chapter = chapter.split(",")[0];
                                     values.add(chapter);
                                     
-                                    String pages = in.nextLine();
+                                    String pages = in.nextLine().trim();
                                     pages = pages.split("=")[1];
                                     pages = pages.split("\\}")[0];
                                     pages = pages.split("\\{")[1];
                                     values.add(pages);
                                     
-                                    String publisher = in.nextLine();
+                                    String publisher = in.nextLine().trim();
                                     publisher = publisher.split("=")[1];
-                                    publisher = publisher.split("\\}")[0];
-                                    publisher = publisher.split("\\{")[1];
                                     values.add(publisher);
                                     
-                                    String year = in.nextLine();
+                                    String year = in.nextLine().trim();
                                     year = year.split("=")[1];
-                                    year = year.split(",")[0];
                                     values.add(year);
                                     
-                                    String volume = in.nextLine();
+                                    String volume = in.nextLine().trim();
                                     volume = volume.split("=")[1];
-                                    volume = volume.split(",")[0];
                                     values.add(volume);
                                     
-                                    String series = in.nextLine();
+                                    String series = in.nextLine().trim();
                                     series = series.split("=")[1];
-                                    series = series.split(",")[0];
                                     values.add(series);
                                     
-                                    String address = in.nextLine();
+                                    String address = in.nextLine().trim();
                                     address = address.split("=")[1];
-                                    address = address.split("\\}")[0];
-                                    address = address.split("\\{")[1];
                                     values.add(address);
                                     
-                                    String edition = in.nextLine();
+                                    String edition = in.nextLine().trim();
                                     edition = edition.split("=")[1];
-                                    edition = edition.split(",")[0];
                                     values.add(edition);
                                     
-                                    String month = in.nextLine();
+                                    String month = in.nextLine().trim();
                                     month = month.split("=")[1];
-                                    month = month.split(",")[0];
                                     values.add(month);
                                     
-                                    String note = in.nextLine();
+                                    String note = in.nextLine().trim();
                                     note = note.split("=")[1];
-                                    note = note.split("\\}")[0];
-                                    note = note.split("\\{")[1];
                                     values.add(note);
                                     return values;
                                 }
@@ -707,14 +589,6 @@ return null;
         return null;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
     static  ArrayList<String> parsebibConference(File file) throws FileNotFoundException
     {
         try
@@ -745,74 +619,54 @@ return null;
                                 {
                                     author = in.nextLine();
                                     author = author.split("=")[1];
-                                    author = author.split("\\}")[0];
-                                    author = author.split("\\{")[1];
                                     values.add(author);
                                                                 
                                     String title = in.nextLine();
                                     title = title.split("=")[1];
-                                    title = title.split("\\}")[0];
-                                    title = title.split("\\{")[1];
                                     values.add(title);
                                                                 
                                     String booktitle = in.nextLine();
                                     booktitle = booktitle.split("=")[1];
-                                    booktitle = booktitle.split("\\}")[0];
-                                    booktitle = booktitle.split("\\{")[1];
                                     values.add(booktitle);
                                                                        
                                     String year = in.nextLine();
                                     year = year.split("=")[1];
-                                    year = year.split(",")[0];
                                     values.add(year);
                                                                       
                                     String editor = in.nextLine();
-                                    editor = editor.split("\\}")[0];
-                                    editor = editor.split("\\{")[1];
+                                    editor = editor.split("=")[1];
                                     values.add(editor);
                                         
                                     String volume = in.nextLine();
                                     volume = volume.split("=")[1];
-                                    volume = volume.split(",")[0];
                                     values.add(volume);
                                                                        
                                     String series = in.nextLine();
                                     series = series.split("=")[1];
-                                    series = series.split(",")[0];
                                     values.add(series);
                                                                     
                                     String pages = in.nextLine();
                                     pages = pages.split("=")[1];
-                                    pages = pages.split(",")[0];
                                     values.add(pages);
                                                                        
                                     String address = in.nextLine();
                                     address = address.split("=")[1];
-                                    address = address.split("\\}")[0];
-                                    address = address.split("\\{")[1];
                                     values.add(address);
                                                   
                                     String month = in.nextLine();
                                     month = month.split("=")[1];
-                                    month = month.split(",")[0];
                                     values.add(month);
                                                                                               
                                     String organization = in.nextLine();
                                     organization = organization.split("=")[1];
-                                    organization = organization.split("\\}")[0];
-                                    organization = organization.split("\\{")[1];
                                     values.add(organization);
                                                                
                                     String publisher = in.nextLine();
                                     publisher = publisher.split("=")[1];
-                                    publisher = publisher.split("\\}")[0];
-                                    publisher = publisher.split("\\{")[1];
                                     values.add(publisher);
                                                         
                                     String note = in.nextLine();
                                     note = note.split("=")[1];
-                                    note = note.split("\\}")[0];
-                                    note = note.split("\\{")[1];
                                     values.add(note);                             
                                     return values;                          
                                 }  
@@ -858,43 +712,27 @@ return null;
                                 { 
                                    title = in.nextLine();
                                    title = title.split("=")[1];
-                                   title = title.split("\\}")[0];
-                                   title = title.split("\\{")[1];
                                    values.add(title);
                                    
                                    String author = in.nextLine();
                                    author = author.split("=")[1];
-                                   author = author.split("\\}")[0];
-                                   author = author.split("\\{")[1];
                                    values.add(author);
                                    
                                    String howpublished = in.nextLine();
                                    howpublished = howpublished.split("=")[1];
-                                   howpublished = howpublished.split("\\}")[0];
-                                   howpublished = howpublished.split("\\{")[1];
                                    values.add(howpublished);
                                    
                                    String address = in.nextLine();
                                    address = address.split("=")[1];
-                                   address = address.split("\\}")[0];
-                                   address = address.split("\\{")[1];
                                    values.add(address);
                                    
                                    String month = in.nextLine();
                                    month = month.split("=")[1];
-                                   month = month.split(",")[0];
                                    values.add(month);
                                    
                                    String year = in.nextLine();
                                    year = year.split("=")[1];
-                                   year = year.split(",")[0];
-                                   values.add(year);
-                                   
-                                   String note = in.nextLine();
-                                   note = note.split("=")[1];
-                                   note = note.split("\\}")[0];
-                                   note = note.split("\\{")[1];
-                                   values.add(note);  
+                                   values.add(year);  
                                    return values; 
                                 }
                                 
@@ -940,70 +778,46 @@ return null;
                                     
                              author = in.nextLine().trim();
                              author = author.split("=")[1];
-                             author = author.split("\\}")[0];
-                             author = author.split("\\{")[1];
-                             String name = author.split(" ")[0]; // ad 
-                             String Surname = author.split(" ")[1]; // soyad
-                             String bitişik =""+name+" "+Surname+"";
-                             values.add(bitişik);
+                             values.add(author);
                                
                               String title = in.nextLine().trim();
                               title = title.split("=")[1];
-                             title = title.split("\\}")[0];
-                             title = title.split("\\{")[1];
                              values.add(title);
                               
                              String publisher = in.nextLine().trim();
                               publisher = publisher.split("=")[1];
-                             publisher = publisher.split("\\}")[0];
-                             
-                             publisher = publisher.split(",")[0];
                              values.add(publisher);
                              
                              String year = in.nextLine().trim();
                              year = year.split("=")[1];
-                             year = year.split(",")[0];
                              values.add(year);
                              
                              String volume = in.nextLine().trim();
                              volume = volume.split("=")[1];
-                             volume = volume.split(",")[0];
                              values.add(volume);
                              
                              String series = in.nextLine().trim();
                              series = series.split("=")[1];
-                             series = series.split(",")[0];
                              values.add(series);
                              
                              String address = in.nextLine().trim();
                              address = address.split("=")[1];
-                             address = address.split(",")[0];
-                             address = address.split("\\}")[0];
-                             address = address.split("\\{")[1];
                              values.add(address);
                              
                              String edition = in.nextLine().trim();
                              edition = edition.split("=")[1]; 
-                             edition = edition.split(",")[0];
                              values.add(edition);
                              
                              String month = in.nextLine().trim();
                              month = month.split("=")[1];
-                             month = month.split(",")[0];
                              values.add(month);
                              
                              String note = in.nextLine().trim();
                              note = note.split("=")[1];
-                             note = note.split(",")[0];
-                             note = note.split("\\}")[0];
-                             note = note.split("\\{")[1];
                              values.add(note);
                                           
                              String isbn = in.nextLine().trim();
                              isbn = isbn.split("=")[1];
-                             isbn = isbn.split(",")[0];
-                             isbn = isbn.split("\\}")[0];
-                             isbn = isbn.split("\\{")[1];
                              values.add(isbn);
                              
                              return values;
@@ -1046,81 +860,57 @@ return null;
                                 if(author.contains(incollection) == true)
                                 {
                                 author = in.nextLine(); 
-                                author = author.split("\\}")[0];
-                                author = author.split("\\{")[1]; 
                                 values.add(author);
                                 
                                 String title = in.nextLine();
-                                title = title.split("\\=")[1];
-                                title = title.split("\\}")[0];
-                                title = title.split("\\{")[1];
+                                title = title.split("=")[1];
                                 values.add(title);
                                 
                                 String booktitle = in.nextLine();
                                 booktitle = booktitle.split("=")[1];
-                                booktitle = booktitle.split("\\}")[0];
-                                booktitle = booktitle.split("\\{")[1];
                                 values.add(booktitle);
                                 
                                 String publisher = in.nextLine();
-                                publisher = publisher.split("=")[1]; 
-                                publisher = publisher.split("\\}")[0];
-                                publisher = publisher.split("\\{")[1];
-                                publisher = publisher.split(",")[0];  
+                                publisher = publisher.split("=")[1];  
                                 values.add(publisher);
                                 
                                 String year = in.nextLine();
                                 year = year.split("=")[1];
-                                year = year.split(",")[0];
                                 values.add(year);
                                 
                                 String editor = in.nextLine();
                                 editor = editor.split("=")[1];
-                                editor = editor.split("\\{")[1];
-                                editor = editor.split("\\}")[0];
-                                editor = editor.split(",")[0];
                                 values.add(editor);
                                 
                                 String volume = in.nextLine();
                                 volume = volume.split("=")[1];
-                                volume = volume.split(",")[0];
                                 values.add(volume);
                                 
                                 String series = in.nextLine();
                                 series = series.split("=")[1];
-                                series = series.split(",")[0];
                                 values.add(series);
                                 
                                 String chapter = in.nextLine();
                                 chapter = chapter.split("=")[1];
-                                chapter = chapter.split(",")[0];
                                 values.add(chapter);
                                 
                                 String pages = in.nextLine();
                                 pages = pages.split("=")[1];
-                                pages = pages.split("\\{")[1];
-                                pages = pages.split("\\}")[0];
                                 values.add(pages);
                                 
                                 String address = in.nextLine();
                                 address = address.split("=")[1];
-                                address = address.split("\\{")[1];
-                                address = address.split("\\}")[0];
                                 values.add(address);
                                                                
                                 String edition = in.nextLine();
                                 edition = edition.split("=")[1];
-                                edition = edition.split(",")[0];
                                 values.add(edition);
                                 
                                 String month = in.nextLine();
                                 month = month.split("=")[1];
-                                month = month.split(",")[0];
                                 values.add(month);
                                 
                                 String note = in.nextLine();
-                                note = note.split("\\}")[0];
-                                note = note.split("\\{")[1]; 
                                 values.add(note);
                                 return values;              
                                 }
@@ -1161,59 +951,48 @@ return null;
                             String article ="@article";
 
                             while(in.hasNext())
-                            {
+                     {
                                 if(author.contains(article))
-                                {
+                        {
+    
                             author = in.nextLine();
-                            String value = author.split("=")[1];
-                            value = value.split("\\}")[0];
-                            value = value.split("\\{")[1];
-                            values.add(value);
+                            author = author.split("=")[1];
+                            values.add(author);
 
                             
-                            String amssubject = in.nextLine(); // ams-subject giriş //
-                            amssubject = amssubject.split("=")[1];
-                            amssubject = amssubject.split("\\}")[0].trim();
-                            amssubject = amssubject.split("\\{")[1].trim();
-                            values.add(amssubject);
+                            String title = in.nextLine(); // ams-subject giriş //
+                            title = title.split("=")[1]; 
+                            values.add(title);
                             
                             
                             String journal = in.nextLine(); // journal giriş //
                             journal = journal.split("=")[1].trim();
-                            journal = journal.split("\\}")[0].trim();  
-                            journal = journal.split("\\{")[1].trim();
                             values.add(journal);
                             
+                            String year = in.nextLine().trim(); //year giriş //  
+                            year = year.split("=")[1].trim();
+                            values.add(year);
                             
-                            String review = in.nextLine().trim(); // review giriş // 
-                            review = review.split("=")[1];
-                            review = review.split("\\}")[0];
-                            review = review.split(",")[0];
-                            values.add(review);
+                            String number = in.nextLine().trim(); //year giriş //  
+                            number = number.split("=")[1].trim();
+                            
+                            values.add(number);
 
                             String pages = in.nextLine().trim(); // pages giriş //   
-                            pages = pages.split("=")[1];
-                            pages = pages.split("\\}")[0]; 
-                            pages = pages.split(",")[0];
+                            pages = pages.split("=")[1];  
                             values.add(pages);
-
-                            String title = in.nextLine(); // title giriş //
-                            title = title.split("=")[1].trim();
-                            title = title.split(",")[0].trim();   
-                            values.add(title);
                             
 
-                            String volume = in.nextLine(); // volume giriş //
-                            volume = volume.split("=")[1].trim();
-                            volume = volume.split(",")[0].trim();  
+                            String month = in.nextLine().trim(); // volume giriş //
+                            month = month.split("=")[1]; 
+                            values.add(month);
+                            
+                            if(in.nextLine().contains("=") == true)
+                            {
+                            String volume = in.nextLine().trim();
+                            volume = volume.split("=")[1]; 
                             values.add(volume);
-                           
-                            
-                            String year = in.nextLine(); //year giriş //
-                            year = year.split("\\}")[0];
-                            year = year.split("\\{")[1];
-                            values.add(year);
-                           
+                            }
                             return values;
                                 }               
                                 else
@@ -1254,7 +1033,41 @@ return null;
 	         BibTeXParser parser = new BibTeXParser();
 
 			return parser.parse(reader);
-		}    
+		} 
+    
+    
+static public ArrayList<String> replacer(ArrayList<String> list) 
+{
+    for (int i = 0; i < list.size(); i++) 
+    {
+          if(list.get(i).contains("{"))
+          {  
+             String temp = list.get(i);
+             temp = temp.replace("{","");
+             temp.trim();
+             list.set(i, temp);
+          }
+          
+          if(list.get(i).contains("}"))
+          {
+             String temp = list.get(i);
+             temp = temp.replace("}","");
+             temp.trim();
+             list.set(i, temp);
+             
+          }
+          
+          if(list.get(i).contains(","))
+          {
+             String temp = list.get(i);
+             temp = temp.replace(",","");
+             temp.trim();
+             list.set(i, temp);
+          }      
+    } 
+    return list;
+}
+
     /**
      *
      * @param args
@@ -1264,6 +1077,8 @@ return null;
         {
             File file = new File("C:\\Users\\LayThese\\Desktop\\a.bib");
             
-            System.out.println(parsebibUnpublished(file)); //test
+            
+            System.out.println(replacer(parsebibBook(file)));
+            
         }
 }
