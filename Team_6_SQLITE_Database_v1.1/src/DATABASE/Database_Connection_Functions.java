@@ -93,6 +93,44 @@ public class Database_Connection_Functions
     }
         
     }
+    public void create()throws SQLException, ClassNotFoundException
+    {
+        if(con == null)
+        {
+           getConnection();
+         }
+        try {
+        PreparedStatement createdb;
+        createdb = con.prepareStatement("CREATE TABLE "AssociatedTo" (\n" +
+"    "ID"    INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+"    "Author1"    INTEGER,\n" +
+"    "Author2"    INTEGER,\n" +
+"    CHECK("Author1" <> "Author2")\n" +
+");");
+        createdb.execute();
+        } catch (SQLException e) 
+        {
+           System.out.println(e.getCause()); //hata raporu gelecek
+    }
+    }
+
+    public void Associate(String aut1,String aut2) throws SQLException, ClassNotFoundException
+    {
+        if(con == null)
+        {
+           getConnection();
+         }
+        try {
+        PreparedStatement createdb;
+
+        createdb = con.prepareStatement("INSERT INTO AssociatedTo(Author1,Author2)\n" +
+"VALUES('"+aut1+"','"+aut2+"');");
+        createdb.execute();
+        } catch (SQLException e) {
+
+           System.out.println(e.getCause()); //hata raporu gelecek
+    }
+    }
     
     /**
      *
