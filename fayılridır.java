@@ -61,7 +61,7 @@ public class fayılridır
                                     }
                                 }
                                 
-                                 if(first.contains("@book"))
+                                else if(first.contains("@book"))
                                 {
                                     values.add("@book");
                                     first = in.nextLine();
@@ -74,7 +74,7 @@ public class fayılridır
                                     }
                                 }
                                 
-                               if(first.contains("@booklet"))
+                              else if(first.contains("@booklet"))
                                 {
                                     values.add("@booklet");
                                     first = in.nextLine();
@@ -87,7 +87,7 @@ public class fayılridır
                                     }
                                 }
                                 
-                               if(first.contains("@inbook"))
+                              else if(first.contains("@inbook"))
                                 {
                                     values.add("@inbook");
                                     first = in.nextLine();
@@ -100,7 +100,7 @@ public class fayılridır
                                     }
                                 }
                                 
-                               if(first.contains("@incollection"))
+                              else if(first.contains("@incollection"))
                                 {
                                     values.add("@incollection");
                                     first = in.nextLine();
@@ -113,7 +113,7 @@ public class fayılridır
                                     }
                                 }
                                 
-                               if(first.contains("@inproceedings"))
+                              else if(first.contains("@inproceedings"))
                                 {
                                     values.add("@inproceedings");
                                     first = in.nextLine();
@@ -126,7 +126,7 @@ public class fayılridır
                                     }
                                 }
                                 
-                                if(first.contains("@manual"))
+                               else if(first.contains("@manual"))
                                 {
                                     values.add("@manual");
                                     first = in.nextLine();
@@ -139,7 +139,7 @@ public class fayılridır
                                     }
                                 }
                                 
-                               if(first.contains("@masterthesis"))
+                              else if(first.contains("@masterthesis"))
                                 {
                                     values.add("@masterthesis");
                                     first = in.nextLine();
@@ -152,7 +152,7 @@ public class fayılridır
                                     }
                                 }
                                 
-                               if(first.contains("@misc"))
+                              else if(first.contains("@misc"))
                                 {
                                     values.add("@misc");
                                     first = in.nextLine();
@@ -165,7 +165,7 @@ public class fayılridır
                                     }
                                 }
                                 
-                                if(first.contains("@phdthesis"))
+                               else if(first.contains("@phdthesis"))
                                 {
                                     values.add("@phdthesis");
                                     first = in.nextLine();
@@ -178,7 +178,7 @@ public class fayılridır
                                     }
                                 }
                                 
-                                if(first.contains("@proceedings"))
+                              else  if(first.contains("@proceedings"))
                                 {
                                     values.add("@proceedings");
                                     first = in.nextLine();
@@ -192,7 +192,7 @@ public class fayılridır
                                 }
                                 
                                 
-                                if(first.contains("@techreport"))
+                              else  if(first.contains("@techreport"))
                                 {
                                     values.add("@techreport");
                                     first = in.nextLine();
@@ -205,7 +205,7 @@ public class fayılridır
                                     }
                                 }
                                 
-                                if(first.contains("@unpublished"))
+                              else if(first.contains("@unpublished"))
                                 {
                                     values.add("@unpublished");
                                     first = in.nextLine();
@@ -341,7 +341,7 @@ public static ArrayList <String> splitter(ArrayList <String> list)
  
             //System.out.println(cleaner(parseAll(file)));   
             ArrayList <String> a = cleaner(parseAll(file));
-            ArrayList <String> b = splitter(a);
-            System.out.println(b);  
+            //ArrayList <String> b = splitter(a);
+            System.out.println(a);  
         }
 }
