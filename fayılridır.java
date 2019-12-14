@@ -320,15 +320,32 @@ public class fayılridır
 public static ArrayList <String> splitter(ArrayList <String> list)
     {
         ArrayList<String> replacer = new ArrayList<>();
-        int i = 1;      
-        while(list.get(i).contains("@") == false)
+        
+        for(int i = 1; i<list.size();i++)
+        {
+            if(list.get(i).contains("@") == false)
         {
             replacer.add(list.get(i));
-            i++;
         }
-      return replacer;  
+        }
+        return replacer;
     }
-    
+
+
+public static ArrayList <String> dump(ArrayList <String> list)
+{
+          ArrayList<String> replacer = new ArrayList<>();
+          
+          for(int i = 0; i<list.size();i++)
+        {
+            if(list.get(i).contains("@") == true)
+        {
+            replacer.add(list.get(i));
+        }
+        }
+        return replacer;        
+}
+
     
     /**
      *
@@ -337,11 +354,11 @@ public static ArrayList <String> splitter(ArrayList <String> list)
      */
     public static void main(String[] args) throws FileNotFoundException
         {
-            File file = new File("C:\\Users\\LayThese\\Desktop\\a.bib");
+            File file = new File("C:\\Users\\LayThese\\Desktop\\sample.bib");
  
             //System.out.println(cleaner(parseAll(file)));   
             ArrayList <String> a = cleaner(parseAll(file));
-            //ArrayList <String> b = splitter(a);
-            System.out.println(a);  
+            ArrayList <String> b = dump(a);
+            System.out.println(b);  
         }
 }
