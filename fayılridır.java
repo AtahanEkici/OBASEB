@@ -50,29 +50,20 @@ public class fayılridır
                             {
                                 if(first.contains("@article"))
                                 { 
+                                    values.add("@article");
                                     first = in.nextLine();
                                     while(first.contains("="))
                                     {
+                                        
                                         values.add(first.split("=")[0].trim());
                                         values.add(first.split("=")[1].trim());
                                         first = in.nextLine();
                                     }
                                 }
                                 
-                                else if(first.contains("@book"))
+                                 if(first.contains("@book"))
                                 {
-                                    first = in.nextLine();
-                                    
-                                    while(first.contains("="))
-                                    {
-                                        values.add(first.split("=")[0].trim());
-                                        values.add(first.split("=")[1].trim());
-                                        first = in.nextLine();
-                                    }
-                                }
-                                
-                               else if(first.contains("@booklet"))
-                                {
+                                    values.add("@book");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -83,8 +74,22 @@ public class fayılridır
                                     }
                                 }
                                 
-                               else if(first.contains("@inbook"))
+                               if(first.contains("@booklet"))
                                 {
+                                    values.add("@booklet");
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                               if(first.contains("@inbook"))
+                                {
+                                    values.add("@inbook");
                                     first = in.nextLine();
                                     
                                    while(first.contains("="))
@@ -95,8 +100,9 @@ public class fayılridır
                                     }
                                 }
                                 
-                               else if(first.contains("@incollection"))
+                               if(first.contains("@incollection"))
                                 {
+                                    values.add("@incollection");
                                     first = in.nextLine();
                                     
                                    while(first.contains("="))
@@ -107,8 +113,9 @@ public class fayılridır
                                     }
                                 }
                                 
-                               else if(first.contains("@inproceedings"))
+                               if(first.contains("@inproceedings"))
                                 {
+                                    values.add("@inproceedings");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -119,8 +126,9 @@ public class fayılridır
                                     }
                                 }
                                 
-                               else if(first.contains("@manual"))
+                                if(first.contains("@manual"))
                                 {
+                                    values.add("@manual");
                                     first = in.nextLine();
                                     
                                    while(first.contains("="))
@@ -131,8 +139,9 @@ public class fayılridır
                                     }
                                 }
                                 
-                               else if(first.contains("@masterthesis"))
+                               if(first.contains("@masterthesis"))
                                 {
+                                    values.add("@masterthesis");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -143,8 +152,9 @@ public class fayılridır
                                     }
                                 }
                                 
-                               else if(first.contains("@misc"))
+                               if(first.contains("@misc"))
                                 {
+                                    values.add("@misc");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -155,8 +165,9 @@ public class fayılridır
                                     }
                                 }
                                 
-                               else if(first.contains("@phdthesis"))
+                                if(first.contains("@phdthesis"))
                                 {
+                                    values.add("@phdthesis");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -167,8 +178,9 @@ public class fayılridır
                                     }
                                 }
                                 
-                               else if(first.contains("@proceedings"))
+                                if(first.contains("@proceedings"))
                                 {
+                                    values.add("@proceedings");
                                     first = in.nextLine();
                                     
                                    while(first.contains("="))
@@ -180,8 +192,9 @@ public class fayılridır
                                 }
                                 
                                 
-                               else if(first.contains("@techreport"))
+                                if(first.contains("@techreport"))
                                 {
+                                    values.add("@techreport");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -192,8 +205,9 @@ public class fayılridır
                                     }
                                 }
                                 
-                               else if(first.contains("@unpublished"))
+                                if(first.contains("@unpublished"))
                                 {
+                                    values.add("@unpublished");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -205,7 +219,15 @@ public class fayılridır
                                 }
                                 else
                                {
-                                   first = in.nextLine();
+                                   if(in.hasNext() == false)
+                                   {
+                                       break;
+                                   }
+                                   else
+                                           {
+                                               first = in.nextLine();
+                                           }
+                                   
                                }
     }
     }
@@ -274,11 +296,40 @@ public class fayılridır
              temp = temp.replace(",","");
              temp.trim();
              list.set(i, temp);
-          }      
+          }
+          
+          if(list.get(i).contains("("))
+          {
+              String temp = list.get(i);
+             temp = temp.replace("(","");
+             temp.trim();
+             list.set(i, temp);
+          }
+          
+          if(list.get(i).contains(")"))
+          {
+              String temp = list.get(i);
+             temp = temp.replace(")","");
+             temp.trim();
+             list.set(i, temp);
+          }
     } 
     return list;
 }
 
+public static ArrayList <String> splitter(ArrayList <String> list)
+    {
+        ArrayList<String> replacer = new ArrayList<>();
+        int i = 1;      
+        while(list.get(i).contains("@") == false)
+        {
+            replacer.add(list.get(i));
+            i++;
+        }
+      return replacer;  
+    }
+    
+    
     /**
      *
      * @param args
@@ -286,8 +337,11 @@ public class fayılridır
      */
     public static void main(String[] args) throws FileNotFoundException
         {
-            File file = new File("C:\\Users\\LayThese\\Desktop\\sample.bib");
+            File file = new File("C:\\Users\\LayThese\\Desktop\\a.bib");
  
-            System.out.println(cleaner(parseAll(file)));  
+            //System.out.println(cleaner(parseAll(file)));   
+            ArrayList <String> a = cleaner(parseAll(file));
+            ArrayList <String> b = splitter(a);
+            System.out.println(b);  
         }
 }
