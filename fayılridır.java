@@ -249,6 +249,19 @@ public class fayılridır
 		}
 	}
 
+public static ArrayList <String> search(ArrayList <String> list , String keyword1 ,String keyword2)
+{
+    ArrayList<String> searched = new ArrayList<>();  
+    for(int i = 0;i<list.size();i++)
+    {
+        if(list.get(i).contains(keyword1) && list.get(i+1).contains(keyword2) )
+        {
+            searched.add(list.get(i));
+            searched.add(list.get(i+1));
+       }
+    }
+        return searched;   
+}
     /**
      *
      * @param file
