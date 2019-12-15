@@ -103,8 +103,8 @@ public class Database_Connection_Functions
         PreparedStatement createdb;
         createdb = con.prepareStatement("CREATE TABLE "AssociatedTo" (\n" +
 "    "ID"    INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-"    "Author1"    INTEGER,\n" +
-"    "Author2"    INTEGER,\n" +
+"    "Author1"    TEXT,\n" +
+"    "Author2"    TEXT,\n" +
 "    CHECK("Author1" <> "Author2")\n" +
 ");");
         createdb.execute();
