@@ -7,8 +7,15 @@ package JTable;
 
 import static BibTeX.fayılridır.cleaner;
 import static BibTeX.fayılridır.parseAll;
+import static BibTeX.fayılridır.parseleft;
+import static BibTeX.fayılridır.parseright;
+import static BibTeX.fayılridır.removeDuplicates;
 import java.awt.Component;
+import java.awt.HeadlessException;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -91,36 +98,36 @@ public class JTable_Denemesi extends javax.swing.JFrame {
                         fc.setFileFilter(filter);
                         Component parent = null;
                         int returnVal = fc.showOpenDialog(parent);
+                        Object[] tableRows;
                         if(returnVal == JFileChooser.APPROVE_OPTION)
                         {
                             try
                             {
                                 // Column Kısmı //
-                                ArrayList <String> values = cleaner(parseAll(fc.getSelectedFile()));
-                                String[] Columns = {"Type","Deneme","Deneme2","Deneme3","Deneme4","Deneme5","Deneme6","Deneme7","Deneme8","Deneme9","Deneme10","Deneme11","Deneme12","Deneme13","Deneme14"};
+                                File file = fc.getSelectedFile();
+                                
+                                ArrayList <String> values2 = removeDuplicates(cleaner(parseleft(file)));
+                                Object[] Columns = values2.toArray();
                                 DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
                                 model.setColumnIdentifiers(Columns);
                                 
                                 // Row kısmı//
-                                Object[] tableRows;
+                                ArrayList <String> values = cleaner(parseright(file));
                                 tableRows = values.toArray();
                                 //System.out.println(cleaner((parseAll(fc.getSelectedFile()))).toArray());
                                 for (Object tableRow : tableRows) {
-                                    String dataRow = tableRow.toString();
                                     model.addRow(tableRows);
-                                }
-                                
+                                }                               
                                  JFrame f = new JFrame();  
                                  JOptionPane.showMessageDialog(f,+tableRows.length+ " kadar öge bulundu");
                                 
                                 //System.out.println(values);
-                            } catch (Exception ex) {
+                            } catch (HeadlessException | FileNotFoundException ex) {
                                 JOptionPane optionPane = new JOptionPane("ErrorMsg", JOptionPane.ERROR_MESSAGE);
                                 JDialog dialog = optionPane.createDialog("Dosya okunurken bir hata oluştu.");
                                 dialog.setVisible(true);
                             }
-                        }
-                    
+                        }             
     }                                   
 
     /**
@@ -163,6 +170,5 @@ public class JTable_Denemesi extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration                   
-
 
 }
