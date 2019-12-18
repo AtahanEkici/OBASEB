@@ -1,6 +1,7 @@
 package BibTeX;
 
 import Swing.Obaseb_Gui;
+import java.awt.Component;
 import java.io.File;
 import java.io.FileNotFoundException;
 import org.jbibtex.*;
@@ -14,6 +15,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class fayılridır
 {   
@@ -21,6 +26,7 @@ public class fayılridır
      *
      * @param file
      * @return
+     * @throws java.io.FileNotFoundException
      */
     public static ArrayList<String> parseAll(File file) throws FileNotFoundException
     {
@@ -28,12 +34,11 @@ public class fayılridır
                         {
                             BibTeXDatabase database = parseBibTeX(file); 
                             formatBibTeX(database, file);
-                        }catch(ParseException p)
+                        }catch(ParseException | FileNotFoundException p)
                         {
-                            System.out.print("Okunmaya çalışan dosyada hata var ya da boş"); //pop up uyarısı verecek
-                        }catch(FileNotFoundException f)
-                        {
-                            System.out.print("Dosya bulunamadı ya da açılamıyor."); //pop up uyarısı verecek
+                                JOptionPane optionPane = new JOptionPane("ErrorMsg", JOptionPane.ERROR_MESSAGE);
+                                JDialog dialog = optionPane.createDialog("Dosya okunurken bir hata oluştu.");
+                                dialog.setVisible(true);
                         }                   catch (IOException | ObjectResolutionException ex) {
                             Logger.getLogger(Obaseb_Gui.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -234,6 +239,614 @@ public class fayılridır
         return values;
     }
     
+    public static ArrayList<String> parse(File file) throws FileNotFoundException
+    {
+         try
+                        {
+                            BibTeXDatabase database = parseBibTeX(file); 
+                            formatBibTeX(database, file);
+                        }catch(ParseException | FileNotFoundException p)
+                        {
+                                JOptionPane optionPane = new JOptionPane("ErrorMsg", JOptionPane.ERROR_MESSAGE);
+                                JDialog dialog = optionPane.createDialog("Dosya okunurken bir hata oluştu.");
+                                dialog.setVisible(true);
+                        }                   catch (IOException | ObjectResolutionException ex) {
+                            Logger.getLogger(Obaseb_Gui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                      ArrayList values;
+                      values = new ArrayList<>();
+                        
+                        try (Scanner in = new Scanner(file))
+                        {
+                            String first;
+                            first = in.nextLine();
+                            
+                            while(in.hasNext())
+                            {
+                                if(first.contains("@article"))
+                                { 
+                                    
+                                    first = in.nextLine();
+                                    while(first.contains("="))
+                                    {
+                                        
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                                else if(first.contains("@book"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@booklet"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@inbook"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                   while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@incollection"))
+                                {
+                                   
+                                    first = in.nextLine();
+                                    
+                                   while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@inproceedings"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                               else if(first.contains("@manual"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                   while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@masterthesis"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@misc"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                               else if(first.contains("@phdthesis"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else  if(first.contains("@proceedings"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                   while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                                
+                              else  if(first.contains("@techreport"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@unpublished"))
+                                {                                   
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                else
+                               {
+                                   if(in.hasNext() == false)
+                                   {
+                                       break;
+                                   }
+                                   else
+                                           {
+                                               first = in.nextLine();
+                                           }
+                                   
+                               }
+    }
+    }
+        return values;
+    }
+    
+    
+     public static ArrayList<String> parseleft(File file) throws FileNotFoundException
+    {
+         try
+                        {
+                            BibTeXDatabase database = parseBibTeX(file); 
+                            formatBibTeX(database, file);
+                        }catch(ParseException | FileNotFoundException p)
+                        {
+                                JOptionPane optionPane = new JOptionPane("ErrorMsg", JOptionPane.ERROR_MESSAGE);
+                                JDialog dialog = optionPane.createDialog("Dosya okunurken bir hata oluştu.");
+                                dialog.setVisible(true);
+                        }                   catch (IOException | ObjectResolutionException ex) {
+                            Logger.getLogger(Obaseb_Gui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                      ArrayList values;
+                      values = new ArrayList<>();
+                        
+                        try (Scanner in = new Scanner(file))
+                        {
+                            String first;
+                            first = in.nextLine();
+                            
+                            while(in.hasNext())
+                            {
+                                if(first.contains("@article"))
+                                { 
+                                    
+                                    first = in.nextLine();
+                                    while(first.contains("="))
+                                    {
+                                        
+                                        values.add(first.split("=")[0].trim());
+                                        
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                                else if(first.contains("@book"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                       
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@booklet"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());                                    
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@inbook"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                   while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@incollection"))
+                                {
+                                   
+                                    first = in.nextLine();
+                                    
+                                   while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@inproceedings"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                               else if(first.contains("@manual"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                   while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@masterthesis"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@misc"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                               else if(first.contains("@phdthesis"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else  if(first.contains("@proceedings"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                   while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                                
+                              else  if(first.contains("@techreport"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@unpublished"))
+                                {                                   
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[0].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                else
+                               {
+                                   if(in.hasNext() == false)
+                                   {
+                                       break;
+                                   }
+                                   else
+                                           {
+                                               first = in.nextLine();
+                                           }
+                                   
+                               }
+    }
+    }
+        return values;
+    }
+     
+      public static ArrayList<String> parseright(File file) throws FileNotFoundException
+    {
+         try
+                        {
+                            BibTeXDatabase database = parseBibTeX(file); 
+                            formatBibTeX(database, file);
+                        }catch(ParseException | FileNotFoundException p)
+                        {
+                                JOptionPane optionPane = new JOptionPane("ErrorMsg", JOptionPane.ERROR_MESSAGE);
+                                JDialog dialog = optionPane.createDialog("Dosya okunurken bir hata oluştu.");
+                                dialog.setVisible(true);
+                        }                   catch (IOException | ObjectResolutionException ex) {
+                            Logger.getLogger(Obaseb_Gui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                      ArrayList values;
+                      values = new ArrayList<>();
+                        
+                        try (Scanner in = new Scanner(file))
+                        {
+                            String first;
+                            first = in.nextLine();
+                            
+                            while(in.hasNext())
+                            {
+                                if(first.contains("@article"))
+                                { 
+                                    
+                                    first = in.nextLine();
+                                    while(first.contains("="))
+                                    {
+                                        
+                                        values.add(first.split("=")[1].trim());
+                                        
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                                else if(first.contains("@book"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[1].trim());
+                                       
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@booklet"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[1].trim());                                    
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@inbook"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                   while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@incollection"))
+                                {
+                                   
+                                    first = in.nextLine();
+                                    
+                                   while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@inproceedings"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                               else if(first.contains("@manual"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                   while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@masterthesis"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@misc"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                               else if(first.contains("@phdthesis"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else  if(first.contains("@proceedings"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                   while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                                
+                              else  if(first.contains("@techreport"))
+                                {
+                                    
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                
+                              else if(first.contains("@unpublished"))
+                                {                                   
+                                    first = in.nextLine();
+                                    
+                                    while(first.contains("="))
+                                    {
+                                        values.add(first.split("=")[1].trim());
+                                        first = in.nextLine();
+                                    }
+                                }
+                                else
+                               {
+                                   if(in.hasNext() == false)
+                                   {
+                                       break;
+                                   }
+                                   else
+                                           {
+                                               first = in.nextLine();
+                                           }           
+                               }
+    }
+    }
+        return values;
+    }
+    
     /**
      *
      * @param database
@@ -249,19 +862,6 @@ public class fayılridır
 		}
 	}
 
-public static ArrayList <String> search(ArrayList <String> list , String keyword1 ,String keyword2)
-{
-    ArrayList<String> searched = new ArrayList<>();  
-    for(int i = 0;i<list.size();i++)
-    {
-        if(list.get(i).contains(keyword1) && list.get(i+1).contains(keyword2) )
-        {
-            searched.add(list.get(i));
-            searched.add(list.get(i+1));
-       }
-    }
-        return searched;   
-}
     /**
      *
      * @param file
@@ -330,6 +930,20 @@ public static ArrayList <String> search(ArrayList <String> list , String keyword
     return list;
 }
 
+public static ArrayList<String>values(ArrayList list)
+{
+    ArrayList values = new ArrayList();
+    
+    list = splitter(list);
+    
+    for(int a = 0;a<list.size();a = a+1)
+    {
+        values.add(list.get(a));
+    }
+    
+    return values;
+}
+    
 public static ArrayList <String> splitter(ArrayList <String> list)
     {
         ArrayList<String> replacer = new ArrayList<>();
@@ -344,8 +958,35 @@ public static ArrayList <String> splitter(ArrayList <String> list)
         return replacer;
     }
 
+public static ArrayList <String>assignedTo(ArrayList <String> list)
+{
+    ArrayList<String> returned = new ArrayList<>();
+    for(int i = 1; i<list.size();i++)
+        {
+            if(list.get(i).contains("@") == false)
+        {
+            returned.add(list.get(i));
+            returned.add(list.get(i+1));
+        }
+        } 
+    return returned;  
+}
 
-public static ArrayList <String> dump(ArrayList <String> list)
+public static int getRows(ArrayList<String> list)
+{
+    int row_count = 0;
+    
+    for(int i=1;i<list.size();i++)
+    {
+        if(list.get(i).contains("@") == false)
+        {
+            row_count++;
+        }
+    }
+    return row_count;
+}
+
+public static ArrayList <String> keys(ArrayList <String> list)
 {
           ArrayList<String> replacer = new ArrayList<>();
           
@@ -359,7 +1000,34 @@ public static ArrayList <String> dump(ArrayList <String> list)
         return replacer;        
 }
 
+public static ArrayList <String> search(ArrayList <String> list , String keyword1 ,String keyword2)
+{
+    ArrayList<String> searched = new ArrayList<>();
+    int counter = 0;
     
+    for(int i = 0; i<list.size(); i++)
+    {
+        if(list.get(i).contains(keyword1) && list.get(i+1).contains(keyword2) )
+        {
+            while(list.get(i).contains("@") == false)
+            {
+                searched.add(list.get(i));
+                i = i -1 ;
+                counter++;
+            }
+            
+            i = i + counter;
+            
+            while(list.get(i).contains("@") == false)
+            {
+                searched.add(list.get(i));
+                i = i + 1;
+            }
+       }
+    }
+        return searched;   
+}   
+
     /**
      *
      * @param args
@@ -367,11 +1035,22 @@ public static ArrayList <String> dump(ArrayList <String> list)
      */
     public static void main(String[] args) throws FileNotFoundException
         {
-            File file = new File("C:\\Users\\LayThese\\Desktop\\sample.bib");
- 
-            //System.out.println(cleaner(parseAll(file)));   
-            ArrayList <String> a = cleaner(parseAll(file));
-            ArrayList <String> b = dump(a);
-            System.out.println(b);  
+                     String userDir = System.getProperty("user.home");
+                     JFileChooser fc = new JFileChooser(userDir +"/Desktop");
+                     FileNameExtensionFilter filter = new FileNameExtensionFilter("BIB FILES", "bib", "BibTeX");
+                     fc.setFileFilter(filter);
+                     Component parent = null;
+                     int returnVal = fc.showOpenDialog(parent);
+                     
+                     if(returnVal == JFileChooser.APPROVE_OPTION)
+                     {
+                         File FilePath = fc.getSelectedFile();
+                         System.out.println(cleaner(parseAll(FilePath)));
+                         
+                         ArrayList<String> list = new ArrayList<>();
+                         list = parseAll(FilePath);
+                         System.out.println(getRows(list));
+                     }
+                      
         }
 }
