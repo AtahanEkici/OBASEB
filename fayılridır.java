@@ -676,33 +676,31 @@ public class fayılridır
                             {
                                 if(first.contains("@article"))
                                 { 
-                                    
+                                    values.add("@article");
                                     first = in.nextLine();
                                     while(first.contains("="))
                                     {
                                         
-                                        values.add(first.split("=")[1].trim());
-                                        
+                                        values.add(first.split("=")[1].trim());                                        
                                         first = in.nextLine();
                                     }
                                 }
                                 
                                 else if(first.contains("@book"))
                                 {
-                                    
+                                    values.add("@book");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
                                     {
                                         values.add(first.split("=")[1].trim());
-                                       
                                         first = in.nextLine();
                                     }
                                 }
                                 
                               else if(first.contains("@booklet"))
                                 {
-                                    
+                                    values.add("@booklet");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -714,7 +712,7 @@ public class fayılridır
                                 
                               else if(first.contains("@inbook"))
                                 {
-                                    
+                                    values.add("@inbook");
                                     first = in.nextLine();
                                     
                                    while(first.contains("="))
@@ -726,7 +724,7 @@ public class fayılridır
                                 
                               else if(first.contains("@incollection"))
                                 {
-                                   
+                                   values.add("@incollection");
                                     first = in.nextLine();
                                     
                                    while(first.contains("="))
@@ -738,7 +736,7 @@ public class fayılridır
                                 
                               else if(first.contains("@inproceedings"))
                                 {
-                                    
+                                    values.add("@inproceedings");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -750,7 +748,7 @@ public class fayılridır
                                 
                                else if(first.contains("@manual"))
                                 {
-                                    
+                                    values.add("@manual");
                                     first = in.nextLine();
                                     
                                    while(first.contains("="))
@@ -762,7 +760,7 @@ public class fayılridır
                                 
                               else if(first.contains("@masterthesis"))
                                 {
-                                    
+                                    values.add("@masterthesis");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -774,7 +772,7 @@ public class fayılridır
                                 
                               else if(first.contains("@misc"))
                                 {
-                                    
+                                    values.add("@misc");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -786,7 +784,7 @@ public class fayılridır
                                 
                                else if(first.contains("@phdthesis"))
                                 {
-                                    
+                                    values.add("@phdthesis");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -798,7 +796,7 @@ public class fayılridır
                                 
                               else  if(first.contains("@proceedings"))
                                 {
-                                    
+                                    values.add("@proceedings");
                                     first = in.nextLine();
                                     
                                    while(first.contains("="))
@@ -811,7 +809,7 @@ public class fayılridır
                                 
                               else  if(first.contains("@techreport"))
                                 {
-                                    
+                                    values.add("@techreport");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -822,7 +820,8 @@ public class fayılridır
                                 }
                                 
                               else if(first.contains("@unpublished"))
-                                {                                   
+                                {
+                                    values.add("@unpublished");
                                     first = in.nextLine();
                                     
                                     while(first.contains("="))
@@ -1028,6 +1027,16 @@ public static ArrayList <String> search(ArrayList <String> list , String keyword
         return searched;   
 }   
 
+public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list) 
+    { 
+        ArrayList<T> newList = new ArrayList<>(); 
+        list.stream().filter((element) -> (!newList.contains(element))).forEachOrdered((element) -> {
+        newList.add(element);
+        }); 
+        return newList; 
+    } 
+
+
     /**
      *
      * @param args
@@ -1045,11 +1054,13 @@ public static ArrayList <String> search(ArrayList <String> list , String keyword
                      if(returnVal == JFileChooser.APPROVE_OPTION)
                      {
                          File FilePath = fc.getSelectedFile();
-                         System.out.println(cleaner(parseAll(FilePath)));
+                         //System.out.println(cleaner(parseAll(FilePath)));
                          
                          ArrayList<String> list = new ArrayList<>();
-                         list = parseAll(FilePath);
+                         list = parseleft(FilePath);
+                         
                          System.out.println(getRows(list));
+                         System.out.println(cleaner(parseright(FilePath)));
                      }
                       
         }
